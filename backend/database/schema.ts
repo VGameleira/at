@@ -32,6 +32,76 @@ export class AuthAccessTokenSchema extends BaseModel {
   declare updatedAt: DateTime | null
 }
 
+export class ClientSchema extends BaseModel {
+  static $columns = ['createdAt', 'id', 'name', 'phone', 'updatedAt'] as const
+  $columns = ClientSchema.$columns
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare name: string
+  @column()
+  declare phone: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
+export class OrderItemSchema extends BaseModel {
+  static $columns = ['createdAt', 'id', 'orderId', 'productId', 'quantity', 'total', 'unitPrice', 'updatedAt'] as const
+  $columns = OrderItemSchema.$columns
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare orderId: number
+  @column()
+  declare productId: number
+  @column()
+  declare quantity: number
+  @column()
+  declare total: number
+  @column()
+  declare unitPrice: number
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
+export class OrderSchema extends BaseModel {
+  static $columns = ['clientId', 'createdAt', 'id', 'status', 'total', 'updatedAt'] as const
+  $columns = OrderSchema.$columns
+  @column()
+  declare clientId: number
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare status: string
+  @column()
+  declare total: number
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
+export class ProductSchema extends BaseModel {
+  static $columns = ['createdAt', 'id', 'isActive', 'name', 'price', 'updatedAt'] as const
+  $columns = ProductSchema.$columns
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare isActive: boolean
+  @column()
+  declare name: string
+  @column()
+  declare price: number
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
 export class UserSchema extends BaseModel {
   static $columns = ['createdAt', 'email', 'fullName', 'id', 'password', 'updatedAt'] as const
   $columns = UserSchema.$columns
