@@ -48,6 +48,18 @@ const routes = {
     tokens: [{"old":"/api/v1/products/:id/status","type":0,"val":"api","end":""},{"old":"/api/v1/products/:id/status","type":0,"val":"v1","end":""},{"old":"/api/v1/products/:id/status","type":0,"val":"products","end":""},{"old":"/api/v1/products/:id/status","type":1,"val":"id","end":""},{"old":"/api/v1/products/:id/status","type":0,"val":"status","end":""}],
     types: placeholder as Registry['products.products.update_status']['types'],
   },
+  'orders.orders.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/v1/orders',
+    tokens: [{"old":"/api/v1/orders","type":0,"val":"api","end":""},{"old":"/api/v1/orders","type":0,"val":"v1","end":""},{"old":"/api/v1/orders","type":0,"val":"orders","end":""}],
+    types: placeholder as Registry['orders.orders.index']['types'],
+  },
+  'orders.orders.store': {
+    methods: ["POST"],
+    pattern: '/api/v1/orders',
+    tokens: [{"old":"/api/v1/orders","type":0,"val":"api","end":""},{"old":"/api/v1/orders","type":0,"val":"v1","end":""},{"old":"/api/v1/orders","type":0,"val":"orders","end":""}],
+    types: placeholder as Registry['orders.orders.store']['types'],
+  },
   'auth.new_account.store': {
     methods: ["POST"],
     pattern: '/api/v1/auth/signup',
