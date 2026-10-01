@@ -28,6 +28,16 @@ router
 
     router
       .group(() => {
+        router.get('/', [controllers.Products, 'index'])
+        router.post('/', [controllers.Products, 'store'])
+        router.put('/:id', [controllers.Products, 'update'])
+        router.patch('/:id/status', [controllers.Products, 'updateStatus'])
+      })
+      .prefix('products')
+      .as('products')
+
+    router
+      .group(() => {
         router.post('signup', [controllers.NewAccount, 'store'])
         router.post('login', [controllers.AccessTokens, 'store'])
       })

@@ -24,6 +24,30 @@ const routes = {
     tokens: [{"old":"/api/v1/clients/:id","type":0,"val":"api","end":""},{"old":"/api/v1/clients/:id","type":0,"val":"v1","end":""},{"old":"/api/v1/clients/:id","type":0,"val":"clients","end":""},{"old":"/api/v1/clients/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['clients.clients.update']['types'],
   },
+  'products.products.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/v1/products',
+    tokens: [{"old":"/api/v1/products","type":0,"val":"api","end":""},{"old":"/api/v1/products","type":0,"val":"v1","end":""},{"old":"/api/v1/products","type":0,"val":"products","end":""}],
+    types: placeholder as Registry['products.products.index']['types'],
+  },
+  'products.products.store': {
+    methods: ["POST"],
+    pattern: '/api/v1/products',
+    tokens: [{"old":"/api/v1/products","type":0,"val":"api","end":""},{"old":"/api/v1/products","type":0,"val":"v1","end":""},{"old":"/api/v1/products","type":0,"val":"products","end":""}],
+    types: placeholder as Registry['products.products.store']['types'],
+  },
+  'products.products.update': {
+    methods: ["PUT"],
+    pattern: '/api/v1/products/:id',
+    tokens: [{"old":"/api/v1/products/:id","type":0,"val":"api","end":""},{"old":"/api/v1/products/:id","type":0,"val":"v1","end":""},{"old":"/api/v1/products/:id","type":0,"val":"products","end":""},{"old":"/api/v1/products/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['products.products.update']['types'],
+  },
+  'products.products.update_status': {
+    methods: ["PATCH"],
+    pattern: '/api/v1/products/:id/status',
+    tokens: [{"old":"/api/v1/products/:id/status","type":0,"val":"api","end":""},{"old":"/api/v1/products/:id/status","type":0,"val":"v1","end":""},{"old":"/api/v1/products/:id/status","type":0,"val":"products","end":""},{"old":"/api/v1/products/:id/status","type":1,"val":"id","end":""},{"old":"/api/v1/products/:id/status","type":0,"val":"status","end":""}],
+    types: placeholder as Registry['products.products.update_status']['types'],
+  },
   'auth.new_account.store': {
     methods: ["POST"],
     pattern: '/api/v1/auth/signup',

@@ -9,6 +9,14 @@ export interface ApiDefinition {
       update: typeof routes['clients.clients.update']
     }
   }
+  products: {
+    products: {
+      index: typeof routes['products.products.index']
+      store: typeof routes['products.products.store']
+      update: typeof routes['products.products.update']
+      updateStatus: typeof routes['products.products.update_status']
+    }
+  }
   auth: {
     newAccount: {
       store: typeof routes['auth.new_account.store']
