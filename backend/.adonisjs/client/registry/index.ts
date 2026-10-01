@@ -6,6 +6,24 @@ import type { ApiDefinition } from './tree.d.ts'
 const placeholder: any = {}
 
 const routes = {
+  'clients.clients.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/v1/clients',
+    tokens: [{"old":"/api/v1/clients","type":0,"val":"api","end":""},{"old":"/api/v1/clients","type":0,"val":"v1","end":""},{"old":"/api/v1/clients","type":0,"val":"clients","end":""}],
+    types: placeholder as Registry['clients.clients.index']['types'],
+  },
+  'clients.clients.store': {
+    methods: ["POST"],
+    pattern: '/api/v1/clients',
+    tokens: [{"old":"/api/v1/clients","type":0,"val":"api","end":""},{"old":"/api/v1/clients","type":0,"val":"v1","end":""},{"old":"/api/v1/clients","type":0,"val":"clients","end":""}],
+    types: placeholder as Registry['clients.clients.store']['types'],
+  },
+  'clients.clients.update': {
+    methods: ["PUT"],
+    pattern: '/api/v1/clients/:id',
+    tokens: [{"old":"/api/v1/clients/:id","type":0,"val":"api","end":""},{"old":"/api/v1/clients/:id","type":0,"val":"v1","end":""},{"old":"/api/v1/clients/:id","type":0,"val":"clients","end":""},{"old":"/api/v1/clients/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['clients.clients.update']['types'],
+  },
   'auth.new_account.store': {
     methods: ["POST"],
     pattern: '/api/v1/auth/signup',

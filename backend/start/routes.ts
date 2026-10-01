@@ -19,6 +19,15 @@ router
   .group(() => {
     router
       .group(() => {
+        router.get('/', [controllers.Clients, 'index'])
+        router.post('/', [controllers.Clients, 'store'])
+        router.put('/:id', [controllers.Clients, 'update'])
+      })
+      .prefix('clients')
+      .as('clients')
+
+    router
+      .group(() => {
         router.post('signup', [controllers.NewAccount, 'store'])
         router.post('login', [controllers.AccessTokens, 'store'])
       })

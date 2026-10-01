@@ -7,6 +7,42 @@ import type { InferInput, SimpleError } from '@vinejs/vine/types'
 export type ParamValue = string | number | bigint | boolean
 
 export interface Registry {
+  'clients.clients.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/v1/clients'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/clients_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/clients_controller').default['index']>>>
+    }
+  }
+  'clients.clients.store': {
+    methods: ["POST"]
+    pattern: '/api/v1/clients'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/client').createClientValidator)>>
+      paramsTuple: []
+      params: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/client').createClientValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/clients_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/clients_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
+  'clients.clients.update': {
+    methods: ["PUT"]
+    pattern: '/api/v1/clients/:id'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/client').updateClientValidator)>>
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: ExtractQuery<InferInput<(typeof import('#validators/client').updateClientValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/clients_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/clients_controller').default['update']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
   'auth.new_account.store': {
     methods: ["POST"]
     pattern: '/api/v1/auth/signup'
