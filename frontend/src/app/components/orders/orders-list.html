@@ -1,0 +1,77 @@
+<section class="orders-panel">
+  <div class="card form-card">
+    <h2>Novo pedido</h2>
+
+    <div class="field">
+      <label for="client-select">Cliente</label>
+      <select id="client-select" [(ngModel)]="selectedClientId" name="clientId">
+        <option [ngValue]="0" disabled>Selecione um cliente</option>
+        <option *ngFor="let client of clients()" [ngValue]="client.id">{{ client.name }}</option>
+      </select>
+    </div>
+
+    <div class="item-builder">
+      <div class="field inline">
+        <label for="product-select">Produto</label>
+        <select id="product-select" [(ngModel)]="selectedProductId" name="selectedProductId">
+          <option [ngValue]="0" disabled>Selecione um produto</option>
+          <option *ngFor="let product of products()" [ngValue]="product.id">{{ product.name }}</option>
+        </select>
+      </div>
+
+      <div class="field inline qty">
+        <label for="quantity">Qtd.</label>
+        <input id="quantity" type="number" min="1" [(ngModel)]="selectedQuantity" name="selectedQuantity" />
+      </div>
+
+      <button type="button" class="secondary" (click)="addItem()">Adicionar</button>
+    </div>
+
+    <ul class="draft-items" *ngIf="draftItems.length > 0">
+      <li *ngFor="let item of draftItems">
+        <span>{{ getProductName(item.productId) }} x {{ item.quantity }}</span>
+        <button type="button" class="link" (click)="removeItem(item.productId)">Remover</button>
+      </li>
+    </ul>
+
+    <button type="button" class="primary" (click)="submitOrder()">Salvar pedido</button>
+    <p class="message" *ngIf="message()">{{ message() }}</p>
+  </div>
+
+  <div class="card list-card">
+    <div class="list-header">
+      <h2>Pedidos</h2>
+      <span>{{ orders().length }} registros</span>
+    </div>
+
+    <div *ngIf="loading()" class="empty-state">Carregando pedidos...</div>
+
+    <ul class="orders-list" *ngIf="!loading()">
+      <li *ngFor="let order of orders()">
+        <div class="order-topline">
+          <strong>Pedido #{{ order.id }}</strong>
+          <span class="status-badge" [ngClass]="order.status">{{ order.status }}</span>
+        </div>
+
+        <p class="order-client">Cliente: {{ order.client?.name ?? 'Cliente' }}</p>
+        <p class="order-total">Total: R$ {{ order.total | number: '1.2-2' }}</p>
+
+        <ul class="items-preview">
+          <li *ngFor="let item of order.items">
+            {{ getProductName(item.productId ?? 0) }} x {{ item.quantity }}
+          </li>
+        </ul>
+
+        <div class="status-action">
+          <select [ngModel]="order.status" (ngModelChange)="updateStatus(order, $event)" name="orderStatus-{{ order.id }}">
+            <option *ngFor="let status of statusOptions" [ngValue]="status">{{ status }}</option>
+          </select>
+        </div>
+      </li>
+    </ul>
+
+    <div class="empty-state" *ngIf="!loading() && orders().length === 0">
+      Nenhum pedido cadastrado.
+    </div>
+  </div>
+</section>

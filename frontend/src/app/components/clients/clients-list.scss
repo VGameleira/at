@@ -1,0 +1,106 @@
+:host {
+  display: block;
+}
+
+.clients-panel {
+  display: grid;
+  grid-template-columns: minmax(280px, 360px) minmax(280px, 1fr);
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 1.25rem;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04);
+}
+
+h2 {
+  margin: 0 0 1rem;
+  color: #111827;
+}
+
+.client-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.client-form label {
+  display: grid;
+  gap: 0.4rem;
+  color: #374151;
+  font-weight: 600;
+}
+
+.client-form input {
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  padding: 0.7rem 0.8rem;
+  font-size: 1rem;
+}
+
+button {
+  border: none;
+  border-radius: 10px;
+  background: #4f46e5;
+  color: white;
+  padding: 0.8rem 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #4338ca;
+}
+
+.message {
+  margin-top: 1rem;
+  color: #111827;
+  font-weight: 600;
+}
+
+.list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  color: #374151;
+}
+
+.client-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.client-list li {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 0.8rem 0.9rem;
+  background: #f9fafb;
+}
+
+.client-list strong,
+.client-list small {
+  display: block;
+}
+
+.client-list small {
+  margin-top: 0.35rem;
+  color: #6b7280;
+}
+
+.empty-state {
+  color: #6b7280;
+  padding: 1rem 0;
+}
+
+@media (max-width: 760px) {
+  .clients-panel {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,43 @@
+<section class="clients-panel">
+  <div class="card form-card">
+    <h2>Novo cliente</h2>
+
+    <form class="client-form" (ngSubmit)="submitClient()">
+      <label>
+        <span>Nome</span>
+        <input type="text" [(ngModel)]="newClient.name" name="name" placeholder="Ex.: João da Silva" />
+      </label>
+
+      <label>
+        <span>Telefone</span>
+        <input type="text" [(ngModel)]="newClient.phone" name="phone" placeholder="Ex.: 11999999999" />
+      </label>
+
+      <button type="submit">Cadastrar</button>
+    </form>
+
+    <p class="message" *ngIf="message()">{{ message() }}</p>
+  </div>
+
+  <div class="card list-card">
+    <div class="list-header">
+      <h2>Clientes</h2>
+      <span>{{ clients().length }} registros</span>
+    </div>
+
+    <div *ngIf="loading()" class="empty-state">Carregando clientes...</div>
+
+    <ul class="client-list" *ngIf="!loading()">
+      <li *ngFor="let client of clients()">
+        <div>
+          <strong>{{ client.name }}</strong>
+          <small>{{ client.phone }}</small>
+        </div>
+      </li>
+    </ul>
+
+    <div class="empty-state" *ngIf="!loading() && clients().length === 0">
+      Nenhum cliente cadastrado.
+    </div>
+  </div>
+</section>
