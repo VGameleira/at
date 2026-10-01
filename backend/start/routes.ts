@@ -40,6 +40,7 @@ router
       .group(() => {
         router.get('/', [controllers.Orders, 'index'])
         router.post('/', [controllers.Orders, 'store'])
+        router.patch('/:id/status', [controllers.Orders, 'updateStatus'])
       })
       .prefix('orders')
       .as('orders')

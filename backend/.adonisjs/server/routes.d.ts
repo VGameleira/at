@@ -13,6 +13,7 @@ export type ScannedRoutes = {
     'products.products.update_status': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'orders.orders.index': { paramsTuple?: []; params?: {} }
     'orders.orders.store': { paramsTuple?: []; params?: {} }
+    'orders.orders.update_status': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'auth.new_account.store': { paramsTuple?: []; params?: {} }
     'auth.access_tokens.store': { paramsTuple?: []; params?: {} }
     'profile.profile.show': { paramsTuple?: []; params?: {} }
@@ -44,6 +45,7 @@ export type ScannedRoutes = {
   }
   PATCH: {
     'products.products.update_status': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'orders.orders.update_status': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
 }
 declare module '@adonisjs/core/types/http' {
