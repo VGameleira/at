@@ -18,7 +18,10 @@
         <span>Produto ativo</span>
       </label>
 
-      <button type="submit">Cadastrar</button>
+      <div class="action-row">
+        <button type="submit">{{ editingProductId !== null ? 'Salvar produto' : 'Cadastrar' }}</button>
+        <button type="button" class="secondary" *ngIf="editingProductId !== null" (click)="cancelEditProduct()">Cancelar</button>
+      </div>
     </form>
 
     <p class="message" *ngIf="message()">{{ message() }}</p>
@@ -43,7 +46,8 @@
           <span class="tag" [class.inactive]="!product.isActive">
             {{ product.isActive ? 'Ativo' : 'Inativo' }}
           </span>
-          <button type="button" (click)="toggleStatus(product)">
+          <button type="button" class="mini" (click)="startEditProduct(product)">Editar</button>
+          <button type="button" class="mini" (click)="toggleStatus(product)">
             {{ product.isActive ? 'Desativar' : 'Ativar' }}
           </button>
         </div>

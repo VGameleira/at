@@ -16,6 +16,8 @@ export class ClientsListComponent implements OnInit {
   readonly loading = signal(false);
   readonly message = signal('');
 
+  editingClientId: number | null = null;
+
   newClient = {
     name: '',
     phone: '',
@@ -41,6 +43,16 @@ export class ClientsListComponent implements OnInit {
     });
   }
 
+  startEditClient(client: Client): void {
+    this.editingClientId = client.id ?? null;
+    this.newClient = { name: client.name, phone: client.phone };
+  }
+
+  cancelEditClient(): void {
+    this.editingClientId = null;
+    this.newClient = { name: '', phone: '' };
+  }
+
   submitClient(): void {
     const name = this.newClient.name.trim();
     const phone = this.newClient.phone.trim();
@@ -50,20 +62,25 @@ export class ClientsListComponent implements OnInit {
       return;
     }
 
-    this.clientsService
-      .createClient({
-        name,
-        phone,
-      })
-      .subscribe({
-        next: (client) => {
+    const request$ = this.editingClientId !== null
+      ? this.clientsService.updateClient({ id: this.editingClientId, name, phone })
+      : this.clientsService.createClient({ name, phone });
+
+    request$.subscribe({
+      next: (client) => {
+        if (this.editingClientId !== null) {
+          this.clients.update((current) => current.map((item) => (item.id === client.id ? client : item)));
+          this.message.set('Cliente atualizado com sucesso.');
+        } else {
           this.clients.update((current) => [...current, client]);
-          this.newClient = { name: '', phone: '' };
           this.message.set('Cliente cadastrado com sucesso.');
-        },
-        error: () => {
-          this.message.set('Erro ao cadastrar o cliente.');
-        },
-      });
+        }
+
+        this.cancelEditClient();
+      },
+      error: () => {
+        this.message.set(this.editingClientId !== null ? 'Erro ao atualizar o cliente.' : 'Erro ao cadastrar o cliente.');
+      },
+    });
   }
 }

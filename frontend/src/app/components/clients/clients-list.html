@@ -13,7 +13,10 @@
         <input type="text" [(ngModel)]="newClient.phone" name="phone" placeholder="Ex.: 11999999999" />
       </label>
 
-      <button type="submit">Cadastrar</button>
+      <div class="action-row">
+        <button type="submit">{{ editingClientId !== null ? 'Salvar cliente' : 'Cadastrar' }}</button>
+        <button type="button" class="secondary" *ngIf="editingClientId !== null" (click)="cancelEditClient()">Cancelar</button>
+      </div>
     </form>
 
     <p class="message" *ngIf="message()">{{ message() }}</p>
@@ -29,10 +32,11 @@
 
     <ul class="client-list" *ngIf="!loading()">
       <li *ngFor="let client of clients()">
-        <div>
+        <div class="client-info">
           <strong>{{ client.name }}</strong>
           <small>{{ client.phone }}</small>
         </div>
+        <button type="button" class="mini" (click)="startEditClient(client)">Editar</button>
       </li>
     </ul>
 

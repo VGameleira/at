@@ -18,4 +18,8 @@ export class ClientsService {
   createClient(client: Omit<Client, 'id'>): Observable<Client> {
     return this.http.post<Client>(this.apiUrl, client);
   }
+
+  updateClient(client: Client): Observable<Client> {
+    return this.http.put<Client>(`${this.apiUrl}/${client.id}`, client);
+  }
 }
