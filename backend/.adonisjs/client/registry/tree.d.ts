@@ -20,6 +20,7 @@ export interface ApiDefinition {
   orders: {
     orders: {
       index: typeof routes['orders.orders.index']
+      show: typeof routes['orders.orders.show']
       store: typeof routes['orders.orders.store']
       updateStatus: typeof routes['orders.orders.update_status']
     }

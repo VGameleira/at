@@ -22,6 +22,16 @@ export default class OrdersController {
     return orders
   }
 
+  async show({ params }: HttpContext) {
+    const order = await Order.query()
+      .where('id', params.id)
+      .preload('client')
+      .preload('items', (query) => query.preload('product'))
+      .firstOrFail()
+
+    return order
+  }
+
   async store({ request, response }: HttpContext) {
     const payload = await request.validateUsing(createOrderValidator)
 

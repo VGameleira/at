@@ -54,6 +54,12 @@ const routes = {
     tokens: [{"old":"/api/v1/orders","type":0,"val":"api","end":""},{"old":"/api/v1/orders","type":0,"val":"v1","end":""},{"old":"/api/v1/orders","type":0,"val":"orders","end":""}],
     types: placeholder as Registry['orders.orders.index']['types'],
   },
+  'orders.orders.show': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/v1/orders/:id',
+    tokens: [{"old":"/api/v1/orders/:id","type":0,"val":"api","end":""},{"old":"/api/v1/orders/:id","type":0,"val":"v1","end":""},{"old":"/api/v1/orders/:id","type":0,"val":"orders","end":""},{"old":"/api/v1/orders/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['orders.orders.show']['types'],
+  },
   'orders.orders.store': {
     methods: ["POST"],
     pattern: '/api/v1/orders',
